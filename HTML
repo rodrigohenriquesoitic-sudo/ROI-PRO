@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Economia RESERVINN</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="[[RESERVINN logo - green and dark grey, modern, clean]]" alt="Logo RESERVINN" class="logo">
+            <h1>Calcule Sua Economia e Recupere o Controle</h1>
+            <p>Descubra quanto seu hotel pode economizar em comissões OTA e o potencial de lucro com o canal direto.</p>
+        </header>
+
+        <div class="calculator-card">
+            <h2>Dados do Seu Hotel</h2>
+            <div class="input-group">
+                <label for="quartos">Número de Quartos:</label>
+                <input type="number" id="quartos" value="80" min="1" placeholder="Ex: 80">
+            </div>
+            <div class="input-group">
+                <label for="ocupacaoMedia">Ocupação Média Mensal (%):</label>
+                <input type="number" id="ocupacaoMedia" value="70" min="0" max="100" placeholder="Ex: 70">
+            </div>
+            <div class="input-group">
+                <label for="diariaMedia">Diária Média (ADR) (R$):</label>
+                <input type="number" id="diariaMedia" value="220" min="0" placeholder="Ex: 220">
+            </div>
+            <div class="input-group">
+                <label for="reservasOtaHoje">% de Reservas via OTA Hoje:</label>
+                <input type="number" id="reservasOtaHoje" value="75" min="0" max="100" placeholder="Ex: 75">
+            </div>
+            <div class="input-group">
+                <label for="comissaoOtaMedia">Comissão Média das OTAs (%):</label>
+                <input type="number" id="comissaoOtaMedia" value="27.5" min="0" max="100" step="0.1" placeholder="Ex: 27.5">
+            </div>
+            <div class="input-group">
+                <label for="metaReducaoOta">Meta: Reduzir Dependência OTA (pontos %):</label>
+                <input type="number" id="metaReducaoOta" value="15" min="0" max="100" placeholder="Ex: 15">
+            </div>
+
+            <button id="calculateBtn">Calcular Minha Economia</button>
+
+            <div class="results-section">
+                <h2>Seu Potencial de Economia e Lucro</h2>
+                <div class="result-group">
+                    <span>Faturamento Mensal Estimado:</span>
+                    <span id="faturamentoMensal" class="result-value">R$ 0,00</span>
+                </div>
+                <div class="result-group">
+                    <span>Comissão Paga às OTAs (Hoje):</span>
+                    <span id="comissaoOtaHojeValor" class="result-value">R$ 0,00</span>
+                </div>
+                <div class="result-group highlight">
+                    <span>**Economia Mensal Estimada (Comissões Evitáveis):**</span>
+                    <span id="economiaMensal" class="result-value">R$ 0,00</span>
+                </div>
+                <div class="result-group highlight">
+                    <span>**Economia Anual Estimada (Comissões Evitáveis):**</span>
+                    <span id="economiaAnual" class="result-value">R$ 0,00</span>
+                </div>
+                <div class="result-group">
+                    <span>Faturamento via OTA (Meta):</span>
+                    <span id="faturamentoOtaMeta" class="result-value">R$ 0,00</span>
+                </div>
+                <div class="result-group">
+                    <span>Comissão Paga às OTAs (Meta):</span>
+                    <span id="comissaoOtaMetaValor" class="result-value">R$ 0,00</span>
+                </div>
+            </div>
+
+            <div class="investment-section">
+                <h2>Investimento RESERVINN (Opcional para Simulação)</h2>
+                <p>Simule seu investimento para ver o Payback e ROI.</p>
+                <div class="input-group">
+                    <label for="feeReservinn">Fee RESERVINN (R$/mês):</label>
+                    <input type="number" id="feeReservinn" value="3000" min="0" placeholder="Ex: 3000">
+                </div>
+                <div class="input-group">
+                    <label for="budgetMidia">Budget de Mídia (R$/mês):</label>
+                    <input type="number" id="budgetMidia" value="2500" min="0" placeholder="Ex: 2500">
+                </div>
+                <div class="result-group">
+                    <span>Investimento Mensal Total:</span>
+                    <span id="investimentoMensalTotal" class="result-value">R$ 0,00</span>
+                </div>
+                <div class="result-group">
+                    <span>Payback Estimado (Meses):</span>
+                    <span id="paybackEstimado" class="result-value">0</span>
+                </div>
+                <div class="result-group">
+                    <span>ROI Anual Estimado (Economia / Invest.):</span>
+                    <span id="roiAnual" class="result-value">0x</span>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 RESERVINN. Performance Hoteleira com ROI Transparente.</p>
+            <p>Este cálculo é uma estimativa. Para um diagnóstico preciso, <a href="#">fale com um especialista.</a></p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
