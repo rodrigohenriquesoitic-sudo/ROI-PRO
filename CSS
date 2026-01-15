@@ -1,0 +1,291 @@
+/* Importação da fonte Sora do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&display=swap');
+
+/* Reset básico para garantir consistência entre navegadores */
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Sora', sans-serif;
+    background-color: #f4f7f6; /* Branco acinzentado claro */
+    color: #191d25; /* Verde Profundo - Cor de base institucional */
+    line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Alinha ao topo para não ficar centralizado verticalmente em telas grandes */
+    min-height: 100vh;
+    padding: 20px; /* Espaçamento geral para o conteúdo */
+}
+
+.container {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    max-width: 800px; /* Largura máxima para desktops */
+    padding: 30px;
+    text-align: center;
+}
+
+header {
+    margin-bottom: 30px;
+}
+
+.logo {
+    max-width: 180px; /* Tamanho do logo */
+    margin-bottom: 15px;
+}
+
+header h1 {
+    color: #00a06a; /* Verde Performance */
+    font-size: 2.2em;
+    margin-bottom: 10px;
+    font-weight: 700; /* Sora Bold */
+}
+
+header p {
+    font-size: 1.1em;
+    color: #2f3847; /* Azul Grafite */
+    font-weight: 300; /* Sora Light */
+}
+
+.calculator-card {
+    background-color: #f9fbfb; /* Fundo levemente diferente para o card */
+    border-radius: 10px;
+    padding: 25px;
+    margin-bottom: 30px;
+    border: 1px solid #e0e6e9;
+}
+
+.calculator-card h2 {
+    color: #191d25; /* Verde Profundo */
+    font-size: 1.8em;
+    margin-bottom: 25px;
+    font-weight: 600; /* Sora SemiBold */
+}
+
+.input-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600; /* Sora SemiBold */
+    color: #2f3847; /* Azul Grafite */
+    font-size: 0.95em;
+}
+
+.input-group input[type="number"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #d1d8dc;
+    border-radius: 8px;
+    font-family: 'Sora', sans-serif;
+    font-size: 1em;
+    color: #191d25;
+    background-color: #ffffff;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input-group input[type="number"]:focus {
+    border-color: #00a06a; /* Verde Performance */
+    box-shadow: 0 0 0 3px rgba(0, 160, 106, 0.2);
+    outline: none;
+}
+
+/* Estilo para o botão de calcular */
+#calculateBtn {
+    background-color: #00a06a; /* Verde Performance */
+    color: #ffffff;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Sora', sans-serif;
+    font-size: 1.1em;
+    font-weight: 700; /* Sora Bold */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+#calculateBtn:hover {
+    background-color: #008c5e; /* Tom mais escuro do verde */
+    transform: translateY(-2px);
+}
+
+#calculateBtn:active {
+    transform: translateY(0);
+}
+
+.results-section, .investment-section {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 25px;
+    margin-top: 25px;
+    border: 1px solid #e0e6e9;
+    text-align: left;
+}
+
+.results-section h2, .investment-section h2 {
+    color: #00a06a; /* Verde Performance */
+    font-size: 1.6em;
+    margin-bottom: 20px;
+    font-weight: 700; /* Sora Bold */
+}
+
+.investment-section p {
+    font-size: 0.95em;
+    color: #2f3847;
+    margin-bottom: 20px;
+    font-weight: 300;
+}
+
+.result-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px dashed #e0e6e9;
+}
+
+.result-group:last-child {
+    border-bottom: none;
+}
+
+.result-group span {
+    font-size: 1.05em;
+    color: #2f3847; /* Azul Grafite */
+}
+
+.result-value {
+    font-weight: 700; /* Sora Bold */
+    color: #191d25; /* Verde Profundo */
+    font-size: 1.1em;
+}
+
+/* Destaque para valores de economia */
+#economiaMensal, #economiaAnual {
+    color: #00a06a; /* Verde Performance */
+    font-size: 1.2em;
+}
+
+/* Destaque para ROI */
+#roiAnual {
+    color: #00a06a; /* Verde Performance */
+    font-size: 1.2em;
+}
+
+footer {
+    margin-top: 40px;
+    font-size: 0.85em;
+    color: #6c7a89; /* Tom de cinza mais suave */
+    font-weight: 300; /* Sora Light */
+}
+
+footer a {
+    color: #00a06a;
+    text-decoration: none;
+    font-weight: 400; /* Sora Regular */
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* ========================================= */
+/* RESPONSIVIDADE - Ajustes para telas menores */
+/* ========================================= */
+
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+        border-radius: 8px;
+    }
+
+    header h1 {
+        font-size: 1.8em;
+    }
+
+    header p {
+        font-size: 1em;
+    }
+
+    .calculator-card h2 {
+        font-size: 1.5em;
+    }
+
+    .results-section h2, .investment-section h2 {
+        font-size: 1.4em;
+    }
+
+    .result-group span, .result-value {
+        font-size: 1em;
+    }
+
+    #economiaMensal, #economiaAnual, #roiAnual {
+        font-size: 1.1em;
+    }
+
+    #calculateBtn {
+        padding: 12px 20px;
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 15px;
+    }
+
+    .container {
+        padding: 15px;
+    }
+
+    .logo {
+        max-width: 150px;
+    }
+
+    header h1 {
+        font-size: 1.5em;
+    }
+
+    header p {
+        font-size: 0.9em;
+    }
+
+    .calculator-card h2 {
+        font-size: 1.3em;
+    }
+
+    .results-section h2, .investment-section h2 {
+        font-size: 1.2em;
+    }
+
+    .input-group label {
+        font-size: 0.9em;
+    }
+
+    .input-group input[type="number"] {
+        padding: 10px 12px;
+        font-size: 0.95em;
+    }
+
+    .result-group span, .result-value {
+        font-size: 0.95em;
+    }
+
+    #economiaMensal, #economiaAnual, #roiAnual {
+        font-size: 1em;
+    }
+
+    footer {
+        font-size: 0.75em;
+    }
+}
