@@ -1,0 +1,108 @@
+document.addEventListener('DOMContentLoaded', function() {
+    // Referências aos elementos de entrada
+    const quartosInput = document.getElementById('quartos');
+    const ocupacaoMediaInput = document.getElementById('ocupacaoMedia');
+    const diariaMediaInput = document.getElementById('diariaMedia');
+    const reservasOtaHojeInput = document.getElementById('reservasOtaHoje');
+    const comissaoOtaMediaInput = document.getElementById('comissaoOtaMedia');
+    const metaReducaoOtaInput = document.getElementById('metaReducaoOta');
+    const feeReservinnInput = document.getElementById('feeReservinn');
+    const budgetMidiaInput = document.getElementById('budgetMidia');
+
+    // Referências aos elementos de resultado
+    const faturamentoMensalOtaHojeSpan = document.getElementById('faturamentoMensalOtaHoje');
+    const comissaoPagaOtaHojeSpan = document.getElementById('comissaoPagaOtaHoje');
+    const faturamentoMensalOtaMetaSpan = document.getElementById('faturamentoMensalOtaMeta');
+    const comissaoPagaOtaMetaSpan = document.getElementById('comissaoPagaOtaMeta');
+    const economiaMensalSpan = document.getElementById('economiaMensal');
+    const economiaAnualSpan = document.getElementById('economiaAnual');
+    const investimentoMensalTotalSpan = document.getElementById('investimentoMensalTotal');
+    const paybackEstimadoSpan = document.getElementById('paybackEstimado');
+    const roiAnualSpan = document.getElementById('roiAnual');
+
+    // Função para formatar números como moeda BRL
+    function formatCurrency(value) {
+        return new Intl.NumberFormat('pt-BR', {
+            style: 'currency',
+            currency: 'BRL'
+        }).format(value);
+    }
+
+    // Função para formatar porcentagem
+    function formatPercentage(value) {
+        return new Intl.NumberFormat('pt-BR', {
+            style: 'percent',
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 2
+        }).format(value / 100);
+    }
+
+    // Função principal de cálculo
+    function calculateResults() {
+        // Obter valores dos inputs (garantindo que são números e tratando NaN)
+        const quartos = parseFloat(quartosInput.value) || 0;
+        const ocupacaoMedia = parseFloat(ocupacaoMediaInput.value) || 0; // em %
+        const diariaMedia = parseFloat(diariaMediaInput.value) || 0;
+        const reservasOtaHoje = parseFloat(reservasOtaHojeInput.value) || 0; // em %
+        const comissaoOtaMedia = parseFloat(comissaoOtaMediaInput.value) || 0; // em %
+        const metaReducaoOta = parseFloat(metaReducaoOtaInput.value) || 0; // em pontos %
+        const feeReservinn = parseFloat(feeReservinnInput.value) || 0;
+        const budgetMidia = parseFloat(budgetMidiaInput.value) || 0;
+
+        // Constantes
+        const diasNoMes = 30; // Média de dias no mês
+
+        // 1. Cálculos de Cenário Atual
+        const totalQuartosVendidosMes = quartos * (ocupacaoMedia / 100) * diasNoMes;
+        const faturamentoTotalMensal = totalQuartosVendidosMes * diariaMedia;
+
+        const faturamentoMensalOtaHoje = faturamentoTotalMensal * (reservasOtaHoje / 100);
+        const comissaoPagaOtaHoje = faturamentoMensalOtaHoje * (comissaoOtaMedia / 100);
+
+        // 2. Cálculos de Cenário com Meta de Redução
+        const reservasOtaMeta = Math.max(0, reservasOtaHoje - metaReducaoOta); // Não pode ser negativo
+        const faturamentoMensalOtaMeta = faturamentoTotalMensal * (reservasOtaMeta / 100);
+        const comissaoPagaOtaMeta = faturamentoMensalOtaMeta * (comissaoOtaMedia / 100);
+
+        // 3. Economia Potencial
+        const economiaMensal = comissaoPagaOtaHoje - comissaoPagaOtaMeta;
+        const economiaAnual = economiaMensal * 12;
+
+        // 4. Cálculos de Investimento
+        const investimentoMensalTotal = feeReservinn + budgetMidia;
+
+        let paybackEstimado = 0;
+        if (economiaMensal > 0) {
+            paybackEstimado = investimentoMensalTotal / economiaMensal;
+        }
+
+        let roiAnual = 0;
+        if (investimentoMensalTotal * 12 > 0) { // Evita divisão por zero
+            roiAnual = economiaAnual / (investimentoMensalTotal * 12);
+        }
+
+        // Atualizar os elementos de resultado na página
+        faturamentoMensalOtaHojeSpan.textContent = formatCurrency(faturamentoMensalOtaHoje);
+        comissaoPagaOtaHojeSpan.textContent = formatCurrency(comissaoPagaOtaHoje);
+        faturamentoMensalOtaMetaSpan.textContent = formatCurrency(faturamentoMensalOtaMeta);
+        comissaoPagaOtaMetaSpan.textContent = formatCurrency(comissaoPagaOtaMeta);
+        economiaMensalSpan.textContent = formatCurrency(economiaMensal);
+        economiaAnualSpan.textContent = formatCurrency(economiaAnual);
+        investimentoMensalTotalSpan.textContent = formatCurrency(investimentoMensalTotal);
+        paybackEstimadoSpan.textContent = paybackEstimado > 0 && isFinite(paybackEstimado) ? ${paybackEstimado.toFixed(1)} meses : 'N/A';
+        roiAnualSpan.textContent = roiAnual > 0 && isFinite(roiAnual) ? ${roiAnual.toFixed(2)}x : 'N/A';
+    }
+
+    // Adicionar event listeners para recalcular quando os inputs mudam
+    quartosInput.addEventListener('input', calculateResults);
+    ocupacaoMediaInput.addEventListener('input', calculateResults);
+    diariaMediaInput.addEventListener('input', calculateResults);
+    reservasOtaHojeInput.addEventListener('input', calculateResults);
+    comissaoOtaMediaInput.addEventListener('input', calculateResults);
+    metaReducaoOtaInput.addEventListener('input', calculateResults);
+    feeReservinnInput.addEventListener('input', calculateResults);
+    budgetMidiaInput.addEventListener('input', calculateResults);
+
+    // Calcular os resultados iniciais ao carregar a página
+    calculateResults();
+});
